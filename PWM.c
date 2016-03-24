@@ -1,3 +1,17 @@
+/*  
+ *  Class: ECE372a
+ * 
+ *  Group: 209
+ *
+ *  Lab: 3 Part 1
+ * 
+ *  File: PWM.c
+ * 
+ *  Member: Michael Harmon (Software)
+ *          Abdul Rana (Hardware)
+ *          James Beulke (System Integration)
+ *          Ali Hassan (Quality Control)
+ */
 
 #include "PWM.h"
 
