@@ -26,12 +26,12 @@ void PWM_Init(){
   OC1CONbits.OCM = 6; // PWM Mode on OC1, Fault Pin Disabled
   OC2CONbits.OCM = 6; // PWM Mode on OC2, Fault Pin Disabled
   OC1CONbits.OCTSEL = 0; // Use Timer 2
-  OC2CONbits.OCTSEL = 0; // Use Timer 3
+  OC2CONbits.OCTSEL = 0; // Use Timer 2
   RPD0Rbits.RPD0R = 0b1100; // OC1 Mapped to RD0
   RPD1Rbits.RPD1R = 0b1011; // OC2 Mapped to RD1
-  OC1RS = 1280; // Set Initial Values of OC1 to 0% Duty Cycle
-  OC2RS = 10230; // Set Initial Values of OC2 to 0% Duty Cycle
-  T2CONbits.TON = 1; // Enable Timer 2
+  OC1RS = 0; // Set Initial Values of OC1 to 0% Duty Cycle
+  OC2RS = 0; // Set Initial Values of OC2 to 0% Duty Cycle
+  T2CONbits.ON = 1; // Enable Timer 2
   OC1CONbits.ON = 1; // Enable Output Compare 1
   OC2CONbits.ON = 1; // Enable Output Compare 2
 }
@@ -54,21 +54,9 @@ void PWM_SetOC2DutyCycle(float newDutyCycle){
 
 void PWM_SetForward(){
   //Set OC1/2 Output
-  MOTOR1A_RP = OC1_OUTPUT;
-  MOTOR2A_RP = OC2_OUTPUT;
-  //Set ODC
-  MOTOR1B_TRIS = TRIS_OUTPUT;
-  MOTOR1B_ODC = ODC_ENABLE;
-  MOTOR1B_LAT = LAT_ENABLE;
-  MOTOR2B_TRIS = TRIS_OUTPUT;
-  MOTOR2B_ODC = ODC_ENABLE;
-  MOTOR2B_LAT = LAT_ENABLE;
-  
-}
-
-void PWM_SetBackward(){
-  //Set OC1/2 Output
+  MOTOR1A_RP = 0;
   MOTOR1B_RP = OC1_OUTPUT;
+  MOTOR2A_RP = 0;
   MOTOR2B_RP = OC2_OUTPUT;
   //Set ODC
   MOTOR1A_TRIS = TRIS_OUTPUT;
@@ -77,4 +65,19 @@ void PWM_SetBackward(){
   MOTOR2A_TRIS = TRIS_OUTPUT;
   MOTOR2A_ODC = ODC_ENABLE;
   MOTOR2A_LAT = LAT_ENABLE;
+}
+
+void PWM_SetBackward(){
+  //Set OC1/2 Output
+  MOTOR1A_RP = OC1_OUTPUT;
+  MOTOR1B_RP = 0;
+  MOTOR2A_RP = OC2_OUTPUT;
+  MOTOR2B_RP = 0;
+  //Set ODC
+  MOTOR1B_TRIS = TRIS_OUTPUT;
+  MOTOR1B_ODC = ODC_ENABLE;
+  MOTOR1B_LAT = LAT_ENABLE;
+  MOTOR2B_TRIS = TRIS_OUTPUT;
+  MOTOR2B_ODC = ODC_ENABLE;
+  MOTOR2B_LAT = LAT_ENABLE;
 }
