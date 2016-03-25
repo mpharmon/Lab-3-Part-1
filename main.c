@@ -30,8 +30,8 @@ void main(void){
     sprintf(string,"Voltage: %4.2fVdc",(ADC1BUF0/1023.0*3.3));
     LCD_PrintString(string);
     LCD_MoveCursor(1,1);
-    PWM_SetBackward();
-    PWM_SetOC1DutyCycle(25);
-    PWM_SetOC2DutyCycle(75);
+    PWM_SetForward();
+    PWM_SetOC1DutyCycle(75);
+    PWM_SetOC2DutyCycle(25);
   };
 }
